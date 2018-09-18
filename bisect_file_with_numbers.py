@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-
 import os
+
 
 def bisect_big_file_looking_for_number(f, search):
     """
@@ -42,8 +42,8 @@ def bisect_big_file_looking_for_number(f, search):
 
     # Calculate filesize, and stablishes lower and upper bounds
     high = os.fstat(f.fileno()).st_size
-    low=0
-    number=int(search)
+    low = 0
+    number = int(search)
     while high - low > 1:
         # Find the middle of the chunk/file and go to it
         middle = int((high + low) / 2)
@@ -72,11 +72,10 @@ def bisect_big_file_looking_for_number(f, search):
         if number > number_in_line:
             low = middle
             continue
-        return {"result":line.replace("\n", ""), "position":f.tell()}
+        return {"result": line.replace("\n", ""), "position": f.tell()}
     return False
 
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
